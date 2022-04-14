@@ -5,8 +5,8 @@ import {ApiOkResponse, ApiTags} from "@nestjs/swagger";
 import {UserDto} from "./dto/user.dto";
 import {RoleEnum} from "../../constants/role.enum";
 
-@Controller('users')
-@ApiTags('users')
+@Controller('students')
+@ApiTags('students')
 export class UserController{
     constructor(public readonly userService: UserService) {}
 
