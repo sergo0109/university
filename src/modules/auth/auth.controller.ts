@@ -11,8 +11,8 @@ import {AuthUser} from "../../decorators/auth-user.decorator";
 import {UserEntity} from "../user/user.entity";
 
 
-@Controller('auth')
-@ApiTags('auth')
+@Controller()
+@ApiTags()
 export class AuthController {
     constructor(
         public readonly authService: AuthService,
