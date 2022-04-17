@@ -1,6 +1,6 @@
-import {Controller, Delete, Get, HttpCode, HttpStatus} from '@nestjs/common';
+import {Controller, Delete, Get, HttpCode, HttpStatus, Param} from '@nestjs/common';
 import {UserService} from './user.service';
-import {Auth, UUIDParam} from "../../decorators/http.decorators";
+import {Auth} from "../../decorators/http.decorators";
 import {ApiOkResponse, ApiTags} from "@nestjs/swagger";
 import {UserDto} from "./dto/user.dto";
 import {RoleEnum} from "../../constants/role.enum";
@@ -11,13 +11,13 @@ export class UserController{
     constructor(public readonly userService: UserService) {}
 
     @Get('/:id')
-    @Auth(RoleEnum.ADMIN)
+    @Auth(RoleEnum.ADMIN, RoleEnum.STUDENT)
     @HttpCode(HttpStatus.OK)
     @ApiOkResponse({
         type: UserDto,
         description: 'get user',
     })
-    async getStudent(@UUIDParam('id') userId: string): Promise<UserDto> {
+    async getStudent(@Param('id') userId: string): Promise<UserDto> {
         return  this.userService.getStudent(userId);
     }
 
@@ -39,7 +39,7 @@ export class UserController{
         type: UserDto,
         description: 'get user',
     })
-    async remove(@UUIDParam('id') userId: string): Promise<void> {
+    async remove(@Param('id') userId: string): Promise<void> {
         return  this.userService.remove(userId);
     }
 }

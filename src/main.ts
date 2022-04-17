@@ -18,7 +18,7 @@ import {ApiConfigService} from './shared/services/api-config.service';
 async function bootstrap() {
     initializeTransactionalContext();
     patchTypeORMRepositoryWithBaseRepository();
-    const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create(AppModule, {cors: true});
     const reflector = app.get(Reflector);
 
     app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
